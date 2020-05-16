@@ -30,6 +30,7 @@ yum install openssl-devel
 public void SentAsync()
 {
 	int a  = 0;
+	Console.WriteLine("test!!!");
 }
 ```
 

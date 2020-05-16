@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; NightkeyBlog 1.0 documentation</title>
+  <title>} &mdash; NightkeyBlog 1.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="other/about.html" />
+    <link rel="next" title="&lt;no title&gt;" href="Doc-02.html" />
     <link rel="prev" title="Welcome to NightkeyBlog" href="index.html" /> 
 </head>
 
@@ -80,10 +80,10 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul class="simple">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">}</a></li>
 </ul>
-</div>
+
             
           
         </div>
@@ -127,7 +127,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>}</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,140 +146,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p># Scrapy教程01- 入门篇</p>
-<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，
-信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取(更确切来说,网络抓取)所设计的，
-也可以应用在获取API所返回的数据(比如Web Services)或者通用的网络爬虫。</p>
-<p>Scrapy也能帮你实现高阶的爬虫框架，比如爬取时的网站认证、内容的分析处理、重复抓取、分布式爬取等等很复杂的事。</p>
-<p>## 安装scrapy</p>
-<p>我的测试环境是centos6.5</p>
-<p>升级python到最新版的2.7，下面的所有步骤都切换到root用户</p>
-<p>由于scrapy目前只能运行在python2上，所以先更新centos上面的python到最新的
+  <p># SecsGem</p>
+<p>SecsGem驅動</p>
+<p>## 安裝</p>
+<ol class="arabic simple">
+<li><p>步驟1</p></li>
+</ol>
+<p>2. 步驟2
 [Python 2.7.11](<a class="reference external" href="https://www.python.org/downloads/release/python-2711/">https://www.python.org/downloads/release/python-2711/</a>)，
-具体方法请google下很多这样的教程。</p>
-<p>先安装一些依赖软件
 <code class="docutils literal notranslate"><span class="pre">`</span>
 <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">python-devel</span>
 <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">libffi-devel</span>
 <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">openssl-devel</span>
 <span class="pre">`</span></code></p>
-<p>然后安装pyopenssl库
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyopenssl</span>
-<span class="pre">`</span></code></p>
-<p>安装xlml
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">python-lxml</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">libxml2-devel</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">libxslt-devel</span>
-<span class="pre">`</span></code></p>
-<p>安装service-identity
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">service-identity</span>
-<span class="pre">`</span></code></p>
-<p>安装twisted
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scrapy</span>
-<span class="pre">`</span></code></p>
-<p>安装scrapy
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scrapy</span> <span class="pre">-U</span>
-<span class="pre">`</span></code></p>
-<p>测试scrapy
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">scrapy</span> <span class="pre">bench</span>
-<span class="pre">`</span></code></p>
-<p>最终成功，太不容易了！</p>
-<p>## 简单示例</p>
-<p>创建一个python源文件，名为stackoverflow.py，内容如下：</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>` python
-import scrapy</p>
-<dl>
-<dt>class StackOverflowSpider(scrapy.Spider):</dt><dd><p>name = ‘stackoverflow’
-start_urls = [‘<a class="reference external" href="http://stackoverflow.com/questions?sort=votes">http://stackoverflow.com/questions?sort=votes</a>’]</p>
-<dl>
-<dt>def parse(self, response):</dt><dd><dl class="simple">
-<dt>for href in response.css(‘.question-summary h3 a::attr(href)’):</dt><dd><p>full_url = response.urljoin(href.extract())
-yield scrapy.Request(full_url, callback=self.parse_question)</p>
-</dd>
-</dl>
-</dd>
-<dt>def parse_question(self, response):</dt><dd><dl class="simple">
-<dt>yield {</dt><dd><p>‘title’: response.css(‘h1 a::text’).extract()[0],
-‘votes’: response.css(‘.question .vote-count-post::text’).extract()[0],
-‘body’: response.css(‘.question .post-text’).extract()[0],
-‘tags’: response.css(‘.question .post-tag::text’).extract(),
-‘link’: response.url,</p>
-</dd>
-</dl>
-<p>}</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">运行：</span>
-<span class="pre">`</span></code>
-scrapy runspider stackoverflow_spider.py -o top-stackoverflow-questions.json
-<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
-<p>结果类似下面：
-<a href="#id7"><span class="problematic" id="id8">``</span></a>`
-[{</p>
-<blockquote>
-<div><p>“body”: “… LONG HTML HERE …”,
-“link”: “<a class="reference external" href="http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array">http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array</a>”,
-“tags”: [“java”, “c++”, “performance”, “optimization”],
-“title”: “Why is processing a sorted array faster than an unsorted array?”,
-“votes”: “9924”</p>
-</div></blockquote>
-<p>},
+<p>## 使用</p>
+<p>開始使用驅動</p>
+<p>### 參考驅動</p>
+<p><strong>這是參考</strong></p>
+<p>### 原始程式</p>
+<p><em>這是範例</em></p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>` C#
+public void SentAsync()
 {</p>
 <blockquote>
-<div><p>“body”: “… LONG HTML HERE …”,
-“link”: “<a class="reference external" href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule</a>”,
-“tags”: [“git”, “git-submodules”],
-“title”: “How do I remove a Git submodule?”,
-“votes”: “1764”</p>
+<div><p>int a  = 0;
+Console.WriteLine(“test!!!”);</p>
 </div></blockquote>
-<p>},
-…]
-<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
-<p>当你运行`scrapy runspider somefile.py`这条语句的时候，Scrapy会去寻找源文件中定义的一个spider并且交给爬虫引擎来执行它。
-<a href="#id13"><span class="problematic" id="id14">`</span></a>start_urls`属性定义了开始的URL，爬虫会通过它来构建初始的请求，返回response后再调用默认的回调方法`parse`并传入这个response。
-我们在`parse`回调方法中通过使用css选择器提取每个提问页面链接的href属性值，然后`yield`另外一个请求，
-并注册`parse_question`回调方法，在这个请求完成后被执行。</p>
-<p>处理流程图：</p>
-<p>![scrapy架构图](/images/scrapy.png)</p>
-<p>Scrapy的一个好处是所有请求都是被调度并异步处理，就算某个请求出错也不影响其他请求继续被处理。</p>
-<p>我们的示例中将解析结果生成json格式，你还可以导出为其他格式（比如XML、CSV），或者是将其存储到FTP、Amazon S3上。
-你还可以通过[pipeline](<a class="reference external" href="http://doc.scrapy.org/en/1.0/topics/item-pipeline.html#topics-item-pipeline">http://doc.scrapy.org/en/1.0/topics/item-pipeline.html#topics-item-pipeline</a>)
-将它们存储到数据库中去，这些数据保存的方式各种各样。</p>
-<p>## Scrapy特性一览
-你已经可以通过Scrapy从一个网站上面爬取数据并将其解析保存下来了，但是这只是Scrapy的皮毛。
-Scrapy提供了更多的特性来让你爬取更加容易和高效。比如：</p>
-<ol class="arabic simple">
-<li><p>内置支持扩展的CSS选择器和XPath表达式来从HTML/XML源码中选择并提取数据，还能使用正则表达式</p></li>
-</ol>
-<p>2. 提供交互式shell控制台试验CSS和XPath表达式，这个在调试你的蜘蛛程序时很有用
-1. 内置支持生成多种格式的订阅导出（JSON、CSV、XML）并将它们存储在多个位置（FTP、S3、本地文件系统）
-1. 健壮的编码支持和自动识别，用于处理外文、非标准和错误编码问题
-1. 可扩展，允许你使用[signals](<a class="reference external" href="http://doc.scrapy.org/en/1.0/topics/signals.html#topics-signals">http://doc.scrapy.org/en/1.0/topics/signals.html#topics-signals</a>)
-和友好的API(middlewares, extensions, 和pipelines)来编写自定义插件功能。
-1. 大量的内置扩展和中间件供使用：</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>cookies and session handling</p></li>
-<li><p>HTTP features like compression, authentication, caching</p></li>
-<li><p>user-agent spoofing</p></li>
-<li><p>robots.txt</p></li>
-<li><p>crawl depth restriction</p></li>
-<li><p>and more</p></li>
-</ul>
-</div></blockquote>
-<p>1. 还有其他好多好东东，比如可重复利用蜘蛛来爬取[Sitemaps](<a class="reference external" href="http://www.sitemaps.org/">http://www.sitemaps.org/</a>)和XML/CSV订阅，
-一个跟爬取元素关联的媒体管道来
-[自动下载图片](<a class="reference external" href="http://doc.scrapy.org/en/1.0/topics/media-pipeline.html#topics-media-pipeline">http://doc.scrapy.org/en/1.0/topics/media-pipeline.html#topics-media-pipeline</a>)，
-一个缓存DNS解析器等等。</p>
+<div class="section" id="id3">
+<h1>}<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
+<p>#### 核心範例</p>
+<p>_範例結果_</p>
+</div>
 
 
            </div>
@@ -289,7 +186,7 @@ Scrapy提供了更多的特性来让你爬取更加容易和高效。比如：</
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="other/about.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Doc-02.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to NightkeyBlog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
