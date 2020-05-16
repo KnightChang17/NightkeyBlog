@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>} &mdash; NightkeyBlog 1.0 documentation</title>
+  <title>SecsGem &mdash; NightkeyBlog 1.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="Doc-02.html" />
+    <link rel="next" title="OPC UA" href="Doc-02.html" />
     <link rel="prev" title="Welcome to NightkeyBlog" href="index.html" /> 
 </head>
 
@@ -81,7 +81,21 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">}</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SecsGem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">參考驅動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">原始程式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">核心範例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#source">source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-02.html">OPC UA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/about.html">Contect Me</a></li>
 </ul>
 
             
@@ -127,7 +141,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>}</li>
+      <li>SecsGem</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,36 +160,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p># SecsGem</p>
+  <div class="section" id="secsgem">
+<h1>SecsGem<a class="headerlink" href="#secsgem" title="Permalink to this headline">¶</a></h1>
 <p>SecsGem驅動</p>
-<p>## 安裝</p>
-<ol class="arabic simple">
+<div class="section" id="id1">
+<h2>安裝<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
 <li><p>步驟1</p></li>
+<li><p>步驟2
+<a class="reference external" href="https://www.python.org/downloads/release/python-2711/">Python 2.7.11</a>，</p></li>
 </ol>
-<p>2. 步驟2
-[Python 2.7.11](<a class="reference external" href="https://www.python.org/downloads/release/python-2711/">https://www.python.org/downloads/release/python-2711/</a>)，
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">python-devel</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">libffi-devel</span>
-<span class="pre">yum</span> <span class="pre">install</span> <span class="pre">openssl-devel</span>
-<span class="pre">`</span></code></p>
-<p>## 使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">devel</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">devel</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">openssl</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>使用<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>開始使用驅動</p>
-<p>### 參考驅動</p>
-<p><strong>這是參考</strong></p>
-<p>### 原始程式</p>
-<p><em>這是範例</em></p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>` C#
-public void SentAsync()
-{</p>
-<blockquote>
-<div><p>int a  = 0;
-Console.WriteLine(“test!!!”);</p>
-</div></blockquote>
 <div class="section" id="id3">
-<h1>}<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
-<p>#### 核心範例</p>
-<p>_範例結果_</p>
+<h3>參考驅動<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><strong>這是參考</strong></p>
+</div>
+<div class="section" id="id4">
+<h3>原始程式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><em>這是範例</em></p>
+<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">void</span> <span class="nf">SentAsync</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">a</span>  <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;test!!!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id5">
+<h4>核心範例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p><em>範例結果</em></p>
+</div>
+</div>
+</div>
+<div class="section" id="source">
+<h2>source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -186,7 +212,7 @@ Console.WriteLine(“test!!!”);</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Doc-02.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Doc-02.html" class="btn btn-neutral float-right" title="OPC UA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to NightkeyBlog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
