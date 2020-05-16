@@ -4,6 +4,24 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+# -- Inital add
+import sphinx_rtd_theme
+import recommonmark
+from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
+import sphinx.environment
+from docutils.utils import get_source_line
+
+# fix compiler bug
+master_doc = 'index'
+
+# add markdown lang
+source_parsers = {
+        '.md': CommonMarkParser
+}
+
+source_suffix = ['.rst', '.md']
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -41,6 +59,9 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+pygments_style = 'sphinx'
+
+todo_include_todos = False
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -48,10 +69,75 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-master_doc = 'index'
+
+# -- Options for LaTeX output ---------------------------------------------
+latex_elements={# The paper size ('letterpaper' or 'a4paper').
+'papersize':'a4paper',# The font size ('10pt', '11pt' or '12pt').
+'pointsize':'12pt','classoptions':',oneside','babel':'',#必須
+'inputenc':'',#必須
+'utf8extra':'',#必須
+# Additional stuff for the LaTeX preamble.
+# use fc-list :lang=zh to see available fonts
+# \usepackage{indentfirst}
+# \setlength{\parindent}{2em}
+'preamble': r"""
+\usepackage{xeCJK}
+\setCJKmainfont{WenQuanYi Micro Hei}
+\setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
+\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
+\setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+"""}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (master_doc, 'NightkeyBlog.tex', u'NightkeyBlog Documentation',
+     u'Knight Chang', 'howto'),
+]
+
+# open for create pdf
+# latex_engine = 'xelatex'
+
+# -- Options for manual page output ---------------------------------------
+
+# One entry per manual page. List of tuples
+# (source start file, name, description, authors, manual section).
+man_pages = [
+    (master_doc, 'NightkeyBlog', u'NightkeyBlog Documentation',
+     [author], 1)
+]
+
+# -- Options for Texinfo output -------------------------------------------
+
+# Grouping the document tree into Texinfo files. List of tuples
+# (source start file, target name, title, author,
+#  dir menu entry, description, category)
+texinfo_documents = [
+    (master_doc, 'NightkeyBlog', u'NightBlog Documentation',
+     author, 'KnightChang17', 'One line description of project.',
+     'Miscellaneous'),
+]
+# -- Additional elements -----------------------------------------------------
+
+
+# AutoStructify
+
+def setup(app):
+    app.add_config_value('reconmmonmark_config', {
+        # 'url_resolver': lambda url: github_doc_root + url,
+        'auto_toc_tree_section': 'Contents',
+        }, True)
+    app.add_transform(AutoStructify)
+
+
+# -- 
