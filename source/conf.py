@@ -12,12 +12,12 @@ from recommonmark.transform import AutoStructify
 import sphinx.environment
 from docutils.utils import get_source_line
 
-from django.views.static import serve
-from dijango.contrib.auth.decorators import login_required
+# from django.views.static import serve
+# from dijango.contrib.auth.decorators import login_required
 
-urlpatterns += patterns('',
-        url(r'^docs/(?P<path>.*)', login_required(serve), {'document_root': './build/html'}, 'docs'),
-)
+# urlpatterns += patterns('',
+#         url(r'^docs/(?P<path>.*)', login_required(serve), {'document_root': './build/html'}, 'docs'),
+# )
 
 # fix compiler bug
 master_doc = 'index'
