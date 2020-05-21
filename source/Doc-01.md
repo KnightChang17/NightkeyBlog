@@ -1,3 +1,6 @@
+SecsGem
+=======
+
 # SecsGem
 
 SecsGem驅動
@@ -6,7 +9,9 @@ SecsGem驅動
 
 1. 步驟1
 2. 步驟2
+
 [Python 2.7.11](https://www.python.org/downloads/release/python-2711/)，
+
 ```
 yum install python-devel
 yum install libffi-devel
@@ -26,12 +31,8 @@ yum install openssl-devel
 
 *這是範例*
 
-``` C#
-public void SentAsync()
-{
-	int a  = 0;
-	Console.WriteLine("test!!!");
-}
+```
+public void SentAsync
 ```
 
 #### 核心範例
@@ -39,3 +40,5 @@ public void SentAsync()
 _範例結果_
 
 ## source
+
+end the doc

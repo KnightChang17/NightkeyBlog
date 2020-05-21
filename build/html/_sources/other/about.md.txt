@@ -1,4 +1,7 @@
-## Contect Me
+Contact Me
+==========
+
+# Contact Me
 
 * Email: nightkey17@gmail.com
 
